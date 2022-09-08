@@ -21,6 +21,9 @@ assert body == create_booking_response_json['booking']
 list_of_bookings_response = s.get(url)
 list_of_bookings_response_json = list_of_bookings_response.json()
 
+assert list_of_bookings_response.status_code == 200
+assert (d['bookingid'] == booking_id for d in list_of_bookings_response_json)
+
 "Create authorization token for for access to the PUT and DELETE /booking"
 authorization_url = get_config()['API']['main_endpoint'] + '/auth'
 auth_body = user1.create_auth_payload()
@@ -48,8 +51,8 @@ assert update_body == get_booking_response_json
 
 "Partially update booking "
 patch_booking_response = s.patch(url=url_with_id, json={
-    "firstname" : "James",
-    "lastname" : "Brown"
+    "firstname": "James",
+    "lastname": "Brown"
 })
 
 patch_booking_response_json = patch_booking_response.json()
