@@ -1,5 +1,3 @@
-import requests
-
 from utilities.configuration import *
 from data.payloads import *
 from data.user import *
@@ -42,3 +40,24 @@ assert create_update_response.status_code == 200
 assert body4 == response_json4
 
 
+"Get updated booking by id"
+
+get_booking_response = s.get(url=url4)
+response_json5 = get_booking_response.json()
+
+assert get_booking_response.status_code == 200
+assert body4 == response_json5
+
+
+"Partially update booking "
+patch_booking_response = s.patch(url=url4, json={
+    "firstname" : "James",
+    "lastname" : "Brown"
+})
+
+response_json6 = patch_booking_response.json()
+assert response_json6['firstname'] == "James" and response_json6['lastname'] == "Brown"
+
+"Delete booking"
+delete_booking_response = s.delete(url=url4)
+assert delete_booking_response.status_code == 201
