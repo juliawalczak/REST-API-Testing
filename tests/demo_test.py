@@ -29,12 +29,16 @@ authorization_url = get_config()['API']['main_endpoint'] + '/auth'
 auth_body = user1.create_auth_payload()
 create_token_response = s.post(url=authorization_url, json=auth_body, headers=header_json, )
 response_json3 = create_token_response.json()
-user_token = response_json3['token']
-print(user_token)
+user_token = 'token=' + response_json3['token']
+s.headers.update({'Cookie': user_token})
 
 "Update booking"
-url4 = get_config()['API']['main_endpoint'] + '/' + str(booking_id)
+url4 = get_config()['API']['main_endpoint'] + '/booking/' + str(booking_id)
 body4 = booker2.create_booking_payload()
-create_update_response = s.put(url=url4, json=body4, headers=header_json, )
+create_update_response = s.put(url=url4, json=body4)
 response_json4 = create_update_response.json()
+
+assert create_update_response.status_code == 200
+assert body4 == response_json4
+
 
