@@ -19,7 +19,6 @@ booking_id = response_json['bookingid']
 "Get list of all bookings"
 create_booking_response2 = requests.get(url)
 response_json2 = create_booking_response2.json()
-print(response_json2)
 
 "Create authorization token for for access to the PUT and DELETE /booking"
 authorization_url = get_config()['API']['main_endpoint'] + '/auth'
@@ -33,5 +32,4 @@ url4 = get_config()['API']['main_endpoint'] + '/' + str(booking_id)
 body4 = booker2.create_booking_payload()
 create_update_response = requests.put(url=url4, json=body4, headers={"Cookie": user_token}, )
 response_json4 = create_update_response.json()
-print(response_json4)
 
