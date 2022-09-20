@@ -1,8 +1,10 @@
 from utilities.methods import *
-from data.payloads import *
+from utilities.methods import *
+from data.testing_data import *
 import pytest
 
 session = create_session()
+
 
 @pytest.mark.parametrize("booker", bookers)
 def test_create_booking(booker):
@@ -23,4 +25,3 @@ def test_create_booking(booker):
 
     assert list_of_bookings_response.status_code == 200
     assert (booking['bookingid'] == booking_id for booking in list_of_bookings_response_json)
-

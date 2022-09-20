@@ -1,6 +1,5 @@
-from data.user import *
 from utilities.methods import *
-from data.payloads import *
+from data.testing_data import *
 import pytest
 
 session = create_session()
