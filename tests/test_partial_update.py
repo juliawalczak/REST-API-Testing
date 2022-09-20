@@ -29,6 +29,10 @@ def test_partial_update_booking(booker):
     assert patch_booking_response_json['firstname'] == "James" and patch_booking_response_json['lastname'] == "Brown"
 
     "Get list of all bookings"
-    list_of_bookings_response_json = get_list_all_ids(session)[1]
-    assert (booking['bookingid'] == booking_id for booking in list_of_bookings_response_json)
+    list_of_bookings_response = get_list_all_ids(session)
+    list_of_bookings_response_json = list_of_bookings_response.json()
+    list_of_all_values = [value for elem in list_of_bookings_response_json for value in elem.values()]
+
+    assert list_of_bookings_response.status_code == 200
+    assert (booking_id in list_of_all_values)
 

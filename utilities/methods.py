@@ -28,8 +28,7 @@ def create_booking(booker, session):
 
 def get_list_all_ids(session):
     list_of_bookings_response = session.get(url)
-    list_of_bookings_response_json = list_of_bookings_response.json()
-    return list_of_bookings_response, list_of_bookings_response_json
+    return list_of_bookings_response
 
 
 def get_item_by_id(url_with_id, session):

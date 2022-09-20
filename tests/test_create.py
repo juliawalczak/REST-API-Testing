@@ -1,5 +1,4 @@
 from utilities.methods import *
-from utilities.methods import *
 from data.testing_data import *
 import pytest
 
@@ -19,9 +18,9 @@ def test_create_booking(booker):
     assert create_booking_response_json['booking'] == body
 
     "Get list of all bookings"
-    results2 = get_list_all_ids(session)
-    list_of_bookings_response = results2[0]
-    list_of_bookings_response_json = results2[1]
+    list_of_bookings_response = get_list_all_ids(session)
+    list_of_bookings_response_json = list_of_bookings_response.json()
+    list_of_all_values = [value for elem in list_of_bookings_response_json for value in elem.values()]
 
     assert list_of_bookings_response.status_code == 200
-    assert (booking['bookingid'] == booking_id for booking in list_of_bookings_response_json)
+    assert (booking_id in list_of_all_values)
