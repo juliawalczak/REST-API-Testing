@@ -1,8 +1,10 @@
-from utilities.methods import *
+from utilities.methods import create_session, create_booking, create_auth_url, get_auth, create_url_with_id, \
+    delete_booking, get_item_by_id
 from data.testing_data import *
 import pytest
 
 session = create_session()
+
 
 @pytest.mark.parametrize("booker", bookers)
 def test_delete_booking2(booker):
@@ -28,5 +30,3 @@ def test_delete_booking2(booker):
     "Get  booking by id"
     get_booking_response = get_item_by_id(url_with_id, session)
     assert get_booking_response.status_code == 404
-
-

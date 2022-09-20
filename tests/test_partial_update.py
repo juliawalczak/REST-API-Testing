@@ -1,4 +1,5 @@
-from utilities.methods import *
+from utilities.methods import create_session, create_booking, create_auth_url, get_auth, create_url_with_id,\
+    partial_update_booking, get_list_all_ids
 from data.testing_data import *
 import pytest
 
@@ -35,4 +36,3 @@ def test_partial_update_booking(booker):
 
     assert list_of_bookings_response.status_code == 200
     assert (booking_id in list_of_all_values)
-
