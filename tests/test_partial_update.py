@@ -23,7 +23,7 @@ def test_partial_update_booking(booker):
 
     "Partially update booking "
     url_with_id = create_url_with_id(booking_id)
-    patch_booking_response = partial_update(session, url_with_id, json1)
+    patch_booking_response = partial_update_booking(session, url_with_id, json1)
     patch_booking_response_json = patch_booking_response.json()
 
     assert patch_booking_response_json['firstname'] == "James" and patch_booking_response_json['lastname'] == "Brown"

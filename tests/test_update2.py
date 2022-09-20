@@ -6,7 +6,7 @@ session = create_session()
 
 
 @pytest.mark.parametrize("updated_booker", updated_bookers)
-def test_update_booking(updated_booker):
+def test_update_booking2(updated_booker):
     """Create booking"""
     results2 = create_booking(booker1, session)
     create_booking_response = results2[0]

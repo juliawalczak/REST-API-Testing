@@ -47,7 +47,7 @@ def delete_booking(session, url_with_id):
     delete_booking_response = session.delete(url=url_with_id)
     return delete_booking_response
 
-def partial_update(session, url_with_id, json):
+def partial_update_booking(session, url_with_id, json):
     patch_booking_response = session.patch(url=url_with_id, json=json)
     return patch_booking_response
 
