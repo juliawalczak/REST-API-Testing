@@ -1,27 +1,26 @@
-from utilities.configuration import *
-from data.payloads import *
-from data.common_headers import *
 from utilities.methods import *
+from data.payloads import *
+import pytest
 
+session = create_session()
 
-def test_create_booking():
-    session = requests.Session()
-
-    "Create booking"
-
-    url = main_endpoint + '/booking'
-    body = booker1.create_booking_payload()
-    create_booking_response = session.post(url, json=body, headers=header_json, )
-    create_booking_response_json = create_booking_response.json()
-
-    booking_id = create_booking_response_json['bookingid']
+@pytest.mark.parametrize("booker", bookers)
+def test_create_booking(booker):
+    """Create booking"""
+    results2 = create_booking(booker, session)
+    create_booking_response = results2[0]
+    create_booking_response_json = results2[1]
+    booking_id = results2[2]
+    body = results2[3]
 
     assert create_booking_response.status_code == 200
-    assert body == create_booking_response_json['booking']
+    assert create_booking_response_json['booking'] == body
 
     "Get list of all bookings"
-    list_of_bookings_response = session.get(url)
-    list_of_bookings_response_json = list_of_bookings_response.json()
+    results2 = get_list_all_ids(session)
+    list_of_bookings_response = results2[0]
+    list_of_bookings_response_json = results2[1]
 
     assert list_of_bookings_response.status_code == 200
     assert (booking['bookingid'] == booking_id for booking in list_of_bookings_response_json)
+
