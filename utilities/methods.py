@@ -11,13 +11,11 @@ def create_session():
 
 
 def create_url_with_id(booking_id):
-    url_with_id = main_endpoint + '/booking/' + str(booking_id)
-    return url_with_id
+    return main_endpoint + '/booking/' + str(booking_id)
 
 
 def create_auth_url():
-    authorization_url = main_endpoint + '/auth'
-    return authorization_url
+    return main_endpoint + '/auth'
 
 
 def create_booking(booker, session):
@@ -29,13 +27,11 @@ def create_booking(booker, session):
 
 
 def get_list_all_ids(session):
-    list_of_bookings_response = session.get(url)
-    return list_of_bookings_response
+    return session.get(url)
 
 
 def get_item_by_id(url_with_id, session):
-    get_booking_response = session.get(url=url_with_id)
-    return get_booking_response
+    return session.get(url=url_with_id)
 
 
 def get_auth(user, session, authorization_url):
@@ -47,13 +43,11 @@ def get_auth(user, session, authorization_url):
 
 
 def delete_booking(session, url_with_id):
-    delete_booking_response = session.delete(url=url_with_id)
-    return delete_booking_response
+    return session.delete(url=url_with_id)
 
 
 def partial_update_booking(session, url_with_id, json):
-    patch_booking_response = session.patch(url=url_with_id, json=json)
-    return patch_booking_response
+    return session.patch(url=url_with_id, json=json)
 
 
 def update_booking(session, url_with_id, updated_booker):

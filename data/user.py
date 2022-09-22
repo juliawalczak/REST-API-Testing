@@ -6,10 +6,9 @@ class UserData(object):
         self.password = password
 
     def create_auth_payload(self):
-        auth_body = {
+        return {
 
             "username": self.username,
             "password": self.password,
 
         }
-        return auth_body
