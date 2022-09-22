@@ -4,6 +4,7 @@ from data.common_headers import *
 
 url = main_endpoint + '/booking'
 
+
 def create_session():
     session = requests.Session()
     return session
@@ -17,6 +18,7 @@ def create_url_with_id(booking_id):
 def create_auth_url():
     authorization_url = main_endpoint + '/auth'
     return authorization_url
+
 
 def create_booking(booker, session):
     body = booker.create_booking_payload()
@@ -35,6 +37,7 @@ def get_item_by_id(url_with_id, session):
     get_booking_response = session.get(url=url_with_id)
     return get_booking_response
 
+
 def get_auth(user, session, authorization_url):
     auth_body = user.create_auth_payload()
     create_token_response = session.post(url=authorization_url, json=auth_body, headers=header_json)
@@ -42,13 +45,16 @@ def get_auth(user, session, authorization_url):
     user_token = 'token=' + create_token_response_json['token']
     session.headers.update({'Cookie': user_token})
 
+
 def delete_booking(session, url_with_id):
     delete_booking_response = session.delete(url=url_with_id)
     return delete_booking_response
 
+
 def partial_update_booking(session, url_with_id, json):
     patch_booking_response = session.patch(url=url_with_id, json=json)
     return patch_booking_response
+
 
 def update_booking(session, url_with_id, updated_booker):
     update_body = updated_booker.create_booking_payload()
