@@ -20,6 +20,12 @@ json1 = {
 }
 
 json2 = {
-    "firstname": "Lily",
-    "lastname": "Xyz"
+    "lastname": 'Malfoy',
+    "totalprice": 999,
+    "depositpaid": False,
+    "bookingdates": {
+        "checkin": '2022-10-01',
+        "checkout": '2022-10-22',
+    },
+    "additionalneeds": 'Dinner'
 }
