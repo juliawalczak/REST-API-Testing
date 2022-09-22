@@ -25,11 +25,13 @@ def test_partial_update_booking():
     patch_booking_response = utilities.methods.partial_update_booking(session, url_with_id, json1)
     patch_booking_response_json = patch_booking_response.json()
 
-    assert patch_booking_response_json['firstname'] == "James" and patch_booking_response_json['lastname'] == "Brown" \
-           and patch_booking_response_json['totalprice'] == 777 and patch_booking_response_json['depositpaid'] ==True \
-           and patch_booking_response_json['bookingdates']['checkin'] == '2022-07-07'\
-           and patch_booking_response_json['bookingdates']['checkout'] == '2022-07-31' \
-           and patch_booking_response_json['additionalneeds'] == 'Secret Chamber'
+    assert patch_booking_response_json['firstname'] == "James"
+    assert patch_booking_response_json['lastname'] == "Brown"
+    assert patch_booking_response_json['totalprice'] == 777
+    assert patch_booking_response_json['depositpaid'] ==True
+    assert patch_booking_response_json['bookingdates']['checkin'] == '2022-07-07'
+    assert patch_booking_response_json['bookingdates']['checkout'] == '2022-07-31'
+    assert patch_booking_response_json['additionalneeds'] == 'Secret Chamber'
 
     "Get list of all bookings"
     list_of_bookings_response = utilities.methods.get_list_all_ids(session)

@@ -25,19 +25,23 @@ def test_partial_update_booking():
     patch_booking_response = utilities.methods.partial_update_booking(session, url_with_id, json2)
     patch_booking_response_json = patch_booking_response.json()
 
-    assert patch_booking_response_json['firstname'] == "Harry" and patch_booking_response_json['lastname'] == "Malfoy" \
-           and patch_booking_response_json['totalprice'] == 999 and patch_booking_response_json['depositpaid'] == False \
-           and patch_booking_response_json['bookingdates']['checkin'] == '2022-10-01' \
-           and patch_booking_response_json['bookingdates']['checkout'] == '2022-10-22' \
-           and patch_booking_response_json['additionalneeds'] == 'Dinner'
+    assert patch_booking_response_json['firstname'] == "Harry"
+    assert patch_booking_response_json['lastname'] == "Malfoy"
+    assert patch_booking_response_json['totalprice'] == 999
+    assert patch_booking_response_json['depositpaid'] == False
+    assert patch_booking_response_json['bookingdates']['checkin'] == '2022-10-01'
+    assert patch_booking_response_json['bookingdates']['checkout'] == '2022-10-22'
+    assert patch_booking_response_json['additionalneeds'] == 'Dinner'
 
     "Get created booking by id"
     get_booking_response = utilities.methods.get_item_by_id(url_with_id, session)
     get_booking_response_json = get_booking_response.json()
 
     assert get_booking_response.status_code == 200
-    assert get_booking_response_json['firstname'] == "Harry" and get_booking_response_json['lastname'] == "Malfoy" \
-           and get_booking_response_json['totalprice'] == 999 and get_booking_response_json['depositpaid'] == False \
-           and get_booking_response_json['bookingdates']['checkin'] == '2022-10-01' \
-           and get_booking_response_json['bookingdates']['checkout'] == '2022-10-22' \
-           and get_booking_response_json['additionalneeds'] == 'Dinner'
+    assert get_booking_response_json['firstname'] == "Harry"
+    assert get_booking_response_json['lastname'] == "Malfoy"
+    assert get_booking_response_json['totalprice'] == 999
+    assert get_booking_response_json['depositpaid'] == False
+    assert get_booking_response_json['bookingdates']['checkin'] == '2022-10-01'
+    assert get_booking_response_json['bookingdates']['checkout'] == '2022-10-22'
+    assert get_booking_response_json['additionalneeds'] == 'Dinner'
