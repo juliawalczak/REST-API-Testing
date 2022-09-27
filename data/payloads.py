@@ -23,3 +23,14 @@ class BookingData(object):
             "additionalneeds": self.additional_needs
         }
         return body
+
+def booking_data_from_json(json):
+    return BookingData(
+        first_name=json["firstname"],
+        last_name=json["lastname"],
+        total_price=json["totalprice"],
+        deposit_paid=json["depositpaid"],
+        check_in=json["bookingdates.checkin"],
+        check_out=json["bookingdates.checkout"],
+        additional_needs=json["additionalneeds"]
+    )

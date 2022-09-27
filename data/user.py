@@ -7,8 +7,6 @@ class UserData(object):
 
     def create_auth_payload(self):
         return {
-
             "username": self.username,
             "password": self.password,
-
         }

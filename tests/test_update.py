@@ -17,13 +17,8 @@ def test_update_booking(updated_booker):
     assert create_booking_response.status_code == 200
     assert create_booking_response_json['booking'] == body
 
-    "Create authorization token for for access to the PUT and DELETE /booking"
-    authorization_url = utilities.methods.create_auth_url()
-    utilities.methods.get_auth(user1, session, authorization_url)
-
     "Update booking"
-    url_with_id = utilities.methods.create_url_with_id(booking_id)
-    results3 = utilities.methods.update_booking(session, url_with_id, updated_booker)
+    results3 = utilities.methods.update_booking(ADMIN_USER, session, booking_id, updated_booker)
     update_body = results3[0]
     create_update_response = results3[1]
     create_update_response_json = create_update_response.json()
@@ -32,7 +27,7 @@ def test_update_booking(updated_booker):
     assert update_body == create_update_response_json
 
     "Get list of all bookings"
-    list_of_bookings_response = utilities.methods.get_list_all_ids(session)
+    list_of_bookings_response = utilities.methods.get_all_bookings(session)
     list_of_bookings_response_json = list_of_bookings_response.json()
     list_of_all_values = [value for elem in list_of_bookings_response_json for value in elem.values()]
 
