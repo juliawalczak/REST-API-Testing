@@ -15,8 +15,8 @@ def create_url_with_id(booking_id):
     return BASE_URL + '/booking/' + str(booking_id)
 
 
-def create_booking(booker, session):
-    body = booker.create_booking_payload()
+def create_booking(booking, session):
+    body = booking.create_booking_payload()
     create_booking_response = session.post(url=BOOKING_PATH, json=body, headers=header_json)
     create_booking_response_json = create_booking_response.json()
     booking_id = create_booking_response_json['bookingid']
@@ -56,9 +56,7 @@ def partial_update_booking(user, session, booking_id, json):
     return session.patch(url=url_with_id, json=json)
 
 
-def update_booking(user, session, booking_id, updated_booker):
+def update_booking(user, session, booking_id, updated_booking):
     get_auth(user, session)
     url_with_id = create_url_with_id(booking_id)
-    update_body = updated_booker.create_booking_payload()
-    create_update_response = session.put(url=url_with_id, json=update_body)
-    return update_body, create_update_response
+    return session.put(url=url_with_id, json=updated_booking.create_booking_payload())

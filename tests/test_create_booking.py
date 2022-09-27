@@ -1,15 +1,13 @@
 import utilities.methods
 from data.testing_data import *
-import pytest
 
 session = utilities.methods.create_session()
 
-@pytest.mark.parametrize("booker", bookers)
-def test_create_booking_get_booking_by_id(booker):
+def test_create_booking_get_booking_by_id():
     "Given I create a new booking"
-    booking_json = booker.create_booking_payload()
+    booking_json = BOOKING_1.create_booking_payload()
 
-    response = utilities.methods.create_booking_daria(booker, session)
+    response = utilities.methods.create_booking_daria(BOOKING_1, session)
     response_body = response.json()
     booking_id = response_body['bookingid']
 
@@ -25,12 +23,11 @@ def test_create_booking_get_booking_by_id(booker):
     assert get_booking_response_response == booking_json
 
 
-@pytest.mark.parametrize("booker", bookers)
-def test_create_booking_get_all_bookings(booker):
+def test_create_booking_get_all_bookings():
     "Given I create a new booking"
-    booking_json = booker.create_booking_payload()
+    booking_json = BOOKING_1.create_booking_payload()
 
-    response = utilities.methods.create_booking_daria(booker, session)
+    response = utilities.methods.create_booking_daria(BOOKING_1, session)
     response_body = response.json()
     booking_id = response_body['bookingid']
 
