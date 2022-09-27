@@ -1,13 +1,13 @@
-import utilities.methods
+import utilities.booking_methods
 from data.testing_data import *
 
-session = utilities.methods.create_session()
+session = utilities.booking_methods.create_session()
 
 def test_create_booking_get_booking_by_id():
     "Given I create a new booking"
-    booking_json = BOOKING_1.create_booking_payload()
+    booking_json = BOOKING_1.to_json()
 
-    response = utilities.methods.create_booking_daria(BOOKING_1, session)
+    response = utilities.booking_methods.create_booking(BOOKING_1, session)
     response_body = response.json()
     booking_id = response_body['bookingid']
 
@@ -15,19 +15,19 @@ def test_create_booking_get_booking_by_id():
     assert response_body['booking'] == booking_json
 
     "When I get the booking by ID"
-    get_booking_response = utilities.methods.get_item_by_id(booking_id, session)
-    get_booking_response_response = get_booking_response.json()
+    get_booking_response = utilities.booking_methods.get_booking_by_id(booking_id, session)
+    get_booking_body = get_booking_response.json()
 
     "Then I successfully get new booking data"
     assert get_booking_response.status_code == 200
-    assert get_booking_response_response == booking_json
+    assert get_booking_body == booking_json
 
 
 def test_create_booking_get_all_bookings():
     "Given I create a new booking"
-    booking_json = BOOKING_1.create_booking_payload()
+    booking_json = BOOKING_1.to_json()
 
-    response = utilities.methods.create_booking_daria(BOOKING_1, session)
+    response = utilities.booking_methods.create_booking(BOOKING_1, session)
     response_body = response.json()
     booking_id = response_body['bookingid']
 
@@ -35,10 +35,10 @@ def test_create_booking_get_all_bookings():
     assert response_body['booking'] == booking_json
 
     "When I get all bookings list"
-    bookings_response = utilities.methods.get_all_bookings(session)
-    bookings_response_body = bookings_response.json()
-    booking_ids = [value for elem in bookings_response_body for value in elem.values()]
+    get_bookings_response = utilities.booking_methods.get_all_bookings(session)
+    get_bookings_body = get_bookings_response.json()
+    booking_ids = [value for elem in get_bookings_body for value in elem.values()]
 
     "Then I successfully get new booking data"
-    assert bookings_response.status_code == 200
+    assert get_bookings_response.status_code == 200
     assert booking_id in booking_ids

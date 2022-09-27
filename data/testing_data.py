@@ -1,5 +1,5 @@
-from data.user import *
-from data.payloads import *
+from data.user_data import *
+from data.booking_data import *
 
 ADMIN_USER = UserData(username='admin', password='password123')
 
